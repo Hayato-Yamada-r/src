@@ -21,10 +21,14 @@ add_executable(talker src/publisher_lambda_function.cpp)
 ament_target_dependencies(talker rclcpp std_msgs)
 add_executable(listener src/subscriber_lambda_function.cpp)
 ament_target_dependencies(listener rclcpp std_msgs)
+add_executable(listener2 src/subscriber_lambda_function2.cpp)
+ament_target_dependencies(listener2 rclcpp std_msgs)
+
 
 install(TARGETS
   talker
   listener
+  listener2
   DESTINATION lib/${PROJECT_NAME})
 
 
