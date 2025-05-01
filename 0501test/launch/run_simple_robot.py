@@ -5,7 +5,7 @@ def generate_launch_description():
     return LaunchDescription([
         # Gazeboの起動
         ExecuteProcess(
-            cmd=['gz', 'sim', 'simple_robot.sdf'],
+            cmd=['gz', 'sim', '/home/hak/ros2_ws/src/0501test/sdf/simple_robot.sdf'],
             output='log',
             log_cmd=True
         ),
