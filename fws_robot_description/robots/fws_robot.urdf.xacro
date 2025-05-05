@@ -27,7 +27,7 @@
 
   <!-- lidar_base -->
   <xacro:lidar_base_v0 parent="base_link">
-	<origin xyz="-0.022 0 0.035"/>
+	<origin xyz="-0.022 0 0.005"/>
   </xacro:lidar_base_v0>
 
   <!-- lidar_head -->
