@@ -22,12 +22,12 @@
   <!-- Base -->
   <link name="base_footprint"/> <!--link name="base_footprint"/ -->
   <xacro:base_v0 parent="base_footprint"> <!-- xacro:base_v0 parent="base_footprint" -->
-	<origin xyz="0 0 0.250"/>
+	<origin xyz="0 0 0"/>
   </xacro:base_v0>
 
   <!-- lidar_base -->
   <xacro:lidar_base_v0 parent="base_link">
-	<origin xyz="-0.022 0 0.005"/>
+	<origin xyz="-0.022 0 0.035"/>
   </xacro:lidar_base_v0>
 
   <!-- lidar_head -->
