@@ -9,7 +9,7 @@ from geometry_msgs.msg import Twist
 from sensor_msgs.msg import Joy
 
 vel_msg = Twist()  # robot velosity
-mode_selection = 4 # 1:opposite phase, 2:in-phase, 3:pivot turn 4: none
+mode_selection = 1 # 1:opposite phase, 2:in-phase, 3:pivot turn 4: none
 
 class Commander(Node):
 
@@ -42,6 +42,7 @@ class Commander(Node):
             self.vel[1] = sign*math.hypot(vel_msg.linear.x + vel_msg.angular.z*self.steering_track/2, vel_msg.angular.z*self.wheel_base/2) + vel_steerring_offset
             self.vel[2] = sign*math.hypot(vel_msg.linear.x - vel_msg.angular.z*self.steering_track/2, vel_msg.angular.z*self.wheel_base/2) - vel_steerring_offset
             self.vel[3] = sign*math.hypot(vel_msg.linear.x + vel_msg.angular.z*self.steering_track/2, vel_msg.angular.z*self.wheel_base/2) + vel_steerring_offset
+
 
             a0 = 2*vel_msg.linear.x + vel_msg.angular.z*self.steering_track
             a1 = 2*vel_msg.linear.x - vel_msg.angular.z*self.steering_track

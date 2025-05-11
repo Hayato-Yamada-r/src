@@ -62,7 +62,7 @@
             <collision name='custom_object_collision'>
             <geometry>
                 <mesh>
-                <uri>file:///home/hak/ros2_ws/src/inrof/sdf/meshes/inrof_field.stl</uri>
+                <uri>file:///home/hak/ros2_ws/src/0501test/sdf/meshes/inrof_field.stl</uri>
                 <scale>1 1 1</scale> <!-- Adjust scale if needed -->
                 </mesh>
             </geometry>
@@ -70,7 +70,7 @@
             <visual name='custom_object_visual'>
             <geometry>
                 <mesh>
-                <uri>file:///home/hak/ros2_ws/src/inrof/sdf/meshes/inrof_field.stl</uri>
+                <uri>file:///home/hak/ros2_ws/src/0501test/sdf/meshes/inrof_field.stl</uri>
                 <scale>1 1 1</scale> <!-- Adjust scale if needed -->
                 </mesh>
             </geometry>
