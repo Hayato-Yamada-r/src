@@ -1,6 +1,6 @@
 from setuptools import find_packages, setup
 
-package_name = '0501test'
+package_name = 'inrof'
 
 setup(
     name=package_name,
