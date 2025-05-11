@@ -21,6 +21,7 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
+            'auto_drive = inrof.inrof_auto_drive:main',
         ],
     },
 )

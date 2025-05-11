@@ -127,7 +127,7 @@
 
             <!-- 左車輪 -->
             <link name="left_wheel">
-                <pose relative_to="base_link">0 0.175 0 -1.5708 0 0</pose>    <!-- 左車輪の位置 -->
+                <pose relative_to="base_link">0 0.0875 0 -1.5708 0 0</pose>    <!-- 左車輪の位置 -->
                 <inertial>
                     <mass>0.5</mass>    <!-- 車輪の質量 -->
                     <inertia>
@@ -164,7 +164,7 @@
 
             <!-- 右車輪（左車輪と同様の設定） -->
             <link name="right_wheel">
-                <pose relative_to="base_link">0 -0.175 0 -1.5708 0 0</pose>    <!-- 右車輪の位置 -->
+                <pose relative_to="base_link">0 -0.0875 0 -1.5708 0 0</pose>    <!-- 右車輪の位置 -->
                 <inertial>
                     <mass>0.5</mass>
                     <inertia>
