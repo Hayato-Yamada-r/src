@@ -4,7 +4,7 @@ package_name = 'inrof'
 
 setup(
     name=package_name,
-    version='0.0.0',
+    version='0.0.1',  # Updated version
     packages=find_packages(exclude=['test']),
     data_files=[
         ('share/ament_index/resource_index/packages',
@@ -16,7 +16,7 @@ setup(
     zip_safe=True,
     maintainer='hak',
     maintainer_email='yamada.hayato.t6@dc.tohoku.ac.jp',
-    description='TODO: Package description',
+    description='Simple diff-drive robot package',  # Updated description
     license='Apache-2.0',
     tests_require=['pytest'],
     entry_points={

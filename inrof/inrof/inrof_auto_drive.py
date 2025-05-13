@@ -3,6 +3,7 @@ from rclpy.node import Node
 from geometry_msgs.msg import Twist
 from nav_msgs.msg import Odometry
 import math
+from transforms3d.euler import quat2euler  # 変更点
 
 class AutoDriveNode(Node):
     def __init__(self):
@@ -20,8 +21,17 @@ class AutoDriveNode(Node):
         orientation_q = msg.pose.pose.orientation
         _, _, self.current_orientation = self.quaternion_to_euler(orientation_q)
 
+        # デバッグログ追加
+        self.get_logger().info(
+            f"Odometry received: position=({self.current_position[0]:.2f}, {self.current_position[1]:.2f}), orientation={self.current_orientation:.2f}"
+        )
+
         # 自動走行ロジック
         self.navigate_to_target()
+
+    def quaternion_to_euler(self, q):
+        # transforms3dのquat2eulerを使ってクォータニオンをオイラー角に変換
+        return quat2euler([q.x, q.y, q.z, q.w])  # デフォルトのaxesは'sxyz'
 
     def navigate_to_target(self):
         # 目標位置までの距離と角度を計算
@@ -40,19 +50,23 @@ class AutoDriveNode(Node):
                 twist.angular.z = 0.5 * angle_diff
             else:  # 目標方向に直進
                 twist.linear.x = 0.5 * distance
+        else:
+            # 目標位置に到達：停止してログ出力
+            twist.linear.x = 0.0
+            twist.angular.z = 0.0
+            self.get_logger().info("Target reached. Stopping.")
         self.publisher.publish(twist)
-
-    def quaternion_to_euler(self, q):
-        # クォータニオンをオイラー角に変換
-        import tf_transformations
-        return tf_transformations.euler_from_quaternion([q.x, q.y, q.z, q.w])
 
 def main(args=None):
     rclpy.init(args=args)
     node = AutoDriveNode()
-    rclpy.spin(node)
-    node.destroy_node()
-    rclpy.shutdown()
+    try:
+        rclpy.spin(node)
+    except KeyboardInterrupt:
+        node.get_logger().info("KeyboardInterrupt received. Shutting down...")
+    finally:
+        node.destroy_node()
+        rclpy.shutdown()
 
 if __name__ == '__main__':
     main()

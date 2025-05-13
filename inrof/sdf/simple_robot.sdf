@@ -3,7 +3,7 @@
 <sdf version="1.8">
     <world name="simple_world">
         <!-- 物理シミュレーションの設定 -->
-        <physics name="1ms" type="ignored">
+        <physics name="1ms" type="ode">  <!-- Changed type from "ignored" to "ode" -->
             <max_step_size>0.001</max_step_size>    <!-- シミュレーションの時間刻み -->
             <real_time_factor>1.0</real_time_factor>    <!-- リアルタイム係数 -->
         </physics>
@@ -201,7 +201,7 @@
 
             <!-- キャスター（補助輪） -->
             <link name="caster">
-                <pose relative_to="base_link">-0.2 0 -0.05 0 0 0</pose>    <!-- キャスターの位置 -->
+                <pose relative_to="base_link">-0.1 0 -0.025 0 0 0</pose>    <!-- キャスターの位置 -->
                 <inertial>
                     <mass>0.1</mass>    <!-- キャスターの質量 -->
                     <inertia>
