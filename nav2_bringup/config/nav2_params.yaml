@@ -1,0 +1,15 @@
+controller_server:
+  ros__parameters:
+    # DWBLocalPlanner の Critic 設定
+    critics: ["ObstacleAvoidance", "GoalAlignment", "FollowPath"]  # Critic リストに "FollowPath" を追加
+    # 各 Critic のパラメータ定義
+    ObstacleAvoidance:
+      # ...existing parameters...
+      weight: 1.0
+    GoalAlignment:
+      # ...existing parameters...
+      weight: 1.0
+    FollowPath:
+      # FollowPath 用のパラメータを定義
+      weight: 1.0
+      # ...必要なパラメータを追加...

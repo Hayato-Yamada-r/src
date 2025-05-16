@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<library path="lib/liblider_controller">
+  <class name="lider_controller::LiderController"
+         type="lider_controller::LiderController"
+         base_class_type="nav2_core::Controller">
+    <description>
+      Custom local controller (lider) for Navigation2.
+    </description>
+  </class>
+</library>

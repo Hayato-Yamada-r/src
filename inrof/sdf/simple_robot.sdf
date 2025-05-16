@@ -62,7 +62,7 @@
             <collision name='custom_object_collision'>
             <geometry>
                 <mesh>
-                <uri>file:///home/hak/ros2_ws/src/inrof/sdf/meshes/inrof_field.stl</uri>
+                <uri>file:///home/hak/ros2_ws/src/inrof/meshes/inrof_field.stl</uri>
                 <scale>1 1 1</scale> <!-- Adjust scale if needed -->
                 </mesh>
             </geometry>
@@ -70,7 +70,7 @@
             <visual name='custom_object_visual'>
             <geometry>
                 <mesh>
-                <uri>file:///home/hak/ros2_ws/src/inrof/sdf/meshes/inrof_field.stl</uri>
+                <uri>file:///home/hak/ros2_ws/src/inrof/meshes/inrof_field.stl</uri>
                 <scale>1 1 1</scale> <!-- Adjust scale if needed -->
                 </mesh>
             </geometry>
@@ -184,7 +184,7 @@
                         </cylinder>
                     </geometry>
                     <material>
-                        <ambient>0 0 0 1</ambient>
+                        <ambient>0 0 0 1</ambient>    <!-- 黒色 -->
                         <diffuse>0 0 0 1</diffuse>
                         <specular>0 0 0 1</specular>
                     </material>
@@ -264,6 +264,51 @@
             <joint name="caster_joint" type="fixed">
                 <parent>base_link</parent>
                 <child>caster</child>
+            </joint>
+
+            <!-- 2Dライダー用リンクの追加 -->
+            <link name="lidar_link">
+                <!-- base_linkより低い位置に配置（例: -0.15 m） -->
+                <pose>0 0 -0.15 0 0 0</pose>
+                <sensor name="lidar_sensor" type="ray">
+                    <pose>0 0 0 0 0 0</pose>
+                    <visualize>true</visualize>
+                    <update_rate>20</update_rate>
+                    <ray>
+                        <scan>
+                            <horizontal>
+                                <samples>360</samples>
+                                <resolution>1</resolution>
+                                <min_angle>-1.5708</min_angle>
+                                <max_angle>1.5708</max_angle>
+                            </horizontal>
+                        </scan>
+                        <range>
+                            <min>0.0</min>
+                            <max>5.0</max>
+                            <resolution>0.01</resolution>
+                        </range>
+                        <!-- ノイズ設定（必要に応じて） -->
+                        <noise>
+                            <type>gaussian</type>
+                            <mean>0.0</mean>
+                            <stddev>0.001</stddev>
+                        </noise>
+                    </ray>
+                    <!-- ここでGazebo ROS2レーザ―センサプラグインを追加 -->
+                    <plugin name="ros2_laser_plugin" filename="libgazebo_ros2_laser.so">
+                        <topicName>/scan</topicName>
+                        <frameName>lidar_link</frameName>
+                        <!-- 必要に応じて他のパラメータ（例: update_rate, range_min, range_max）を指定 -->
+                    </plugin>
+                </sensor>
+            </link>
+
+            <!-- ライダーのジョイント（固定） -->
+            <joint name="lidar_joint" type="fixed">
+                <parent>base_link</parent>
+                <child>lidar_link</child>
+                <pose>0 0 -0.15 0 0 0</pose>
             </joint>
 
             <!-- 差動駆動システムのプラグイン -->
